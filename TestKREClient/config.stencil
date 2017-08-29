@@ -1,0 +1,10 @@
+public struct TestCredentials {
+	let sessionID: String
+	let userAgent: String
+	let presenceChannel: String
+	let url: String
+	let email: String
+}
+
+
+public let testCreds = TestCredentials(sessionID: "{{ argument.sessionID }}", userAgent: "{{ argument.userAgent }}", presenceChannel: "{{ argument.presenceChannel }}", url: "{{ argument.url }}", email: "{{ argument.email }}")
