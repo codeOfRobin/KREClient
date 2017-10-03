@@ -10,6 +10,9 @@
 		426D03C81F835909009528C4 /* ForegroundViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03C71F835909009528C4 /* ForegroundViewing.swift */; };
 		426D03CA1F83598C009528C4 /* Typing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03C91F83598C009528C4 /* Typing.swift */; };
 		426D03CC1F835A66009528C4 /* Updating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03CB1F835A66009528C4 /* Updating.swift */; };
+		426D03CE1F83768A009528C4 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FE11F5027E000E010EE /* Unbox.framework */; };
+		426D03CF1F83768A009528C4 /* Birdsong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FDF1F5027E000E010EE /* Birdsong.framework */; };
+		426D03D01F83768A009528C4 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FE01F5027E000E010EE /* Starscream.framework */; };
 		4278ABE71F6EC0FA0008FD35 /* KREClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* KREClient.framework */; };
 		4278ABE81F6EC0FA0008FD35 /* KREClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* KREClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42792E3E1F5028C6007F8101 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FE11F5027E000E010EE /* Unbox.framework */; };
@@ -118,6 +121,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426D03CE1F83768A009528C4 /* Unbox.framework in Frameworks */,
+				426D03CF1F83768A009528C4 /* Birdsong.framework in Frameworks */,
+				426D03D01F83768A009528C4 /* Starscream.framework in Frameworks */,
 				4278ABE71F6EC0FA0008FD35 /* KREClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -766,6 +772,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7G2XZXD8B4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TestKREClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -797,6 +807,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7G2XZXD8B4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TestKREClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -42,6 +42,7 @@ public class KREClient {
 			fatalError("invalid URL")
 		}
 		self.socket = Socket(url: url)
+		socket.enableLogging = false
 	}
 	
 	public var isConnected: Bool {
@@ -83,7 +84,7 @@ public class KREClient {
 		channel.presence.onStateChange = onStateChange
 		
 		channel.onPresenceUpdate { (presence) in
-			print(presence.firstMetas())
+//			print(presence.firstMetas())
 		}
 		
 		channel.presence.onJoin = { id, meta in

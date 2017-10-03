@@ -8,6 +8,7 @@
 
 import UIKit
 import KREClient
+import Unbox
 
 class ViewController: UIViewController {
 
@@ -28,7 +29,16 @@ class ViewController: UIViewController {
 			self?.kreClient.channel(topic: sampleCase, deviceID: nil, onJoin: { (payload) in
 				
 				self?.kreClient.addPresenceStateCallback(topic: sampleCase) { (state) in
-					print(state)
+					let users = state.map{ $0.value }
+					let metas = users.flatMap{ $0.first }
+					let viewingUsers = metas.filter{ $0["is_viewing"] as? Int == 1 }
+					let avatarURLs: [URL] = try! viewingUsers.map {
+						dict -> URL in
+						let unboxer = Unboxer.init(dictionary: dict)
+						let avatarURL: String = try unboxer.unbox(keyPath: "user.avatar")
+						return URL(string: avatarURL)!
+					}
+					print(avatarURLs)
 				}
 				
 				self?.kreClient.addChangeCallback(topic: sampleCase) { (payload) in
