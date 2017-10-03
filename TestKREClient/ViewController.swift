@@ -16,12 +16,12 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		
 		kreClient.connect { [weak self] in
 			print("connected")
 			self?.kreClient.channel(topic: testCreds.presenceChannel, deviceID: nil) {
 				payload in
 			}
+			
 			
 			let sampleCase = "presence-61485139915436ab6fc57ca6b1e0bc87f58649bc427077133b6e71a278c3e8a2@v1_cases_560"
 			

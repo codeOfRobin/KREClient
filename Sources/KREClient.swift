@@ -18,7 +18,8 @@ public class KREClient {
 	let auth: Authorization
 	let vsn = "1.0.0"
 	
-	var socket: Socket?
+	let socket: Socket
+	
 	
 	public init(instance: String, auth: Authorization) {
 		self.auth = auth
@@ -38,28 +39,29 @@ public class KREClient {
 			return [session, userAgentQueryItem, vsn, instance]
 		}()
 		guard let url = components?.url else {
-			return
+			fatalError("invalid URL")
 		}
-		
-		socket = Socket(url: url)
-		socket?.enableLogging = false
-		
+		self.socket = Socket(url: url)
+	}
+	
+	public var isConnected: Bool {
+		return socket.isConnected
 	}
 	
 	public func channel(topic: String, deviceID: Int?, onJoin: (@escaping (Socket.Payload) -> Void)) {
-		let channel = self.socket?.channel(topic, payload: [:])
-		channel?.join()?.receive("ok", callback: { (payload) in
+		let channel = self.socket.channel(topic, payload: [:])
+		channel.join()?.receive("ok", callback: { (payload) in
 			onJoin(payload)
 		})
 		
 	}
 	
 	public func connect(onConnect: (@escaping () -> Void)) {
-		socket?.onConnect = onConnect
-		socket?.connect()
-		socket?.onDisconnect = {
+		socket.onConnect = onConnect
+		socket.connect()
+		socket.onDisconnect = {
 			[weak self] error in
-			self?.socket?.connect()
+			self?.socket.connect()
 		}
 	}
 	
@@ -67,14 +69,14 @@ public class KREClient {
 		
 		var channel: Channel
 		
-		if let subscribedChannel = socket?.channels[topic] {
+		if let subscribedChannel = socket.channels[topic] {
 			channel = subscribedChannel
 			channel.on(event, callback: closure)
 		}
 	}
 	
 	public func addPresenceStateCallback(topic: String, onStateChange: @escaping ((Presence.PresenceState) -> Void)) {
-		guard let channel = socket?.channels[topic] else {
+		guard let channel = socket.channels[topic] else {
 			return
 		}
 		// Presence support.
@@ -116,7 +118,7 @@ public class KREClient {
 	}
 	
 	func push(to topic: String, payload: Socket.Payload) {
-		let channel = socket?.channels[topic]
+		let channel = socket.channels[topic]
 		channel?.send("update-presence-meta", payload: payload)
 	}
 	
