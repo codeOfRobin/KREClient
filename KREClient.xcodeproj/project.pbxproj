@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		424FAF971F55833C00000C9F /* KREClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* KREClient.framework */; };
+		426D03C81F835909009528C4 /* ForegroundViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03C71F835909009528C4 /* ForegroundViewing.swift */; };
+		426D03CA1F83598C009528C4 /* Typing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03C91F83598C009528C4 /* Typing.swift */; };
+		426D03CC1F835A66009528C4 /* Updating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426D03CB1F835A66009528C4 /* Updating.swift */; };
+		4278ABE71F6EC0FA0008FD35 /* KREClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* KREClient.framework */; };
+		4278ABE81F6EC0FA0008FD35 /* KREClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* KREClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42792E3E1F5028C6007F8101 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FE11F5027E000E010EE /* Unbox.framework */; };
 		42792E3F1F5028C6007F8101 /* Birdsong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FDF1F5027E000E010EE /* Birdsong.framework */; };
 		42792E401F5028C6007F8101 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E68FE01F5027E000E010EE /* Starscream.framework */; };
@@ -33,6 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4278ABE91F6EC0FA0008FD35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52D6D9731BEFF229002C0205 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52D6D97B1BEFF229002C0205;
+			remoteInfo = "KREClient-iOS";
+		};
 		52D6D9881BEFF229002C0205 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52D6D9731BEFF229002C0205 /* Project object */;
@@ -56,7 +67,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4278ABEB1F6EC0FB0008FD35 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4278ABE81F6EC0FA0008FD35 /* KREClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		426D03C71F835909009528C4 /* ForegroundViewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundViewing.swift; sourceTree = "<group>"; };
+		426D03C91F83598C009528C4 /* Typing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typing.swift; sourceTree = "<group>"; };
+		426D03CB1F835A66009528C4 /* Updating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updating.swift; sourceTree = "<group>"; };
 		42792E411F502904007F8101 /* Authorizaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorizaion.swift; sourceTree = "<group>"; };
 		42792E431F502924007F8101 /* String+isEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isEmail.swift"; sourceTree = "<group>"; };
 		42E68FC31F50238F00E010EE /* TestKREClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestKREClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				424FAF971F55833C00000C9F /* KREClient.framework in Frameworks */,
+				4278ABE71F6EC0FA0008FD35 /* KREClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +248,9 @@
 				42792E431F502924007F8101 /* String+isEmail.swift */,
 				8933C7841EB5B820000D00A4 /* KREClient.swift */,
 				42E68FDD1F50258A00E010EE /* ChannelSubscription.swift */,
+				426D03C71F835909009528C4 /* ForegroundViewing.swift */,
+				426D03C91F83598C009528C4 /* Typing.swift */,
+				426D03CB1F835A66009528C4 /* Updating.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -292,10 +323,12 @@
 				42E68FC01F50238F00E010EE /* Frameworks */,
 				42E68FC11F50238F00E010EE /* Resources */,
 				427AE0BA1F51771C008DD820 /* ShellScript */,
+				4278ABEB1F6EC0FB0008FD35 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4278ABEA1F6EC0FA0008FD35 /* PBXTargetDependency */,
 			);
 			name = TestKREClient;
 			productName = TestKREClient;
@@ -612,9 +645,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				42792E421F502904007F8101 /* Authorizaion.swift in Sources */,
+				426D03CA1F83598C009528C4 /* Typing.swift in Sources */,
 				42792E441F502924007F8101 /* String+isEmail.swift in Sources */,
 				42E68FDE1F50258A00E010EE /* ChannelSubscription.swift in Sources */,
+				426D03C81F835909009528C4 /* ForegroundViewing.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* KREClient.swift in Sources */,
+				426D03CC1F835A66009528C4 /* Updating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +705,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4278ABEA1F6EC0FA0008FD35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52D6D97B1BEFF229002C0205 /* KREClient-iOS */;
+			targetProxy = 4278ABE91F6EC0FA0008FD35 /* PBXContainerItemProxy */;
+		};
 		52D6D9891BEFF229002C0205 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 52D6D97B1BEFF229002C0205 /* KREClient-iOS */;
@@ -709,6 +750,7 @@
 		42E68FD31F50238F00E010EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -739,6 +781,7 @@
 		42E68FD41F50238F00E010EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

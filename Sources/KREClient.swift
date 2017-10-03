@@ -42,7 +42,7 @@ public class KREClient {
 		}
 		
 		socket = Socket(url: url)
-		socket?.enableLogging = true
+		socket?.enableLogging = false
 		
 	}
 	
@@ -80,17 +80,14 @@ public class KREClient {
 		// Presence support.
 		channel.presence.onStateChange = onStateChange
 		
-		
 		channel.onPresenceUpdate { (presence) in
 			print(presence.firstMetas())
 		}
 		
 		channel.presence.onJoin = { id, meta in
-			//			print("Join: user with id \(id) with meta entry: \(meta)")
 		}
 		
 		channel.presence.onLeave = { id, meta in
-			//			print("Leave: user with id \(id) with meta entry: \(meta)")
 		}
 	}
 	
@@ -123,23 +120,35 @@ public class KREClient {
 		channel?.send("update-presence-meta", payload: payload)
 	}
 	
-	public func sendStartTypingEvent(to topic: String) {
-		
+	public func send(_ updatingEvent: Updating, to topic: String) {
 		let payload: Socket.Payload = [
-			"last_active_at": Date().timeIntervalSince1970,
-			"is_typing": true
+			"last_active_at": updatingEvent.lastActiveAt.timeIntervalSince1970,
+			"is_updating": updatingEvent.isUpdating
 		]
 		
 		push(to: topic, payload: payload)
 	}
 	
-	public func sendStopTypingEvent(to topic: String) {
-		
+	public func send(_ typingEvent: Typing, to topic: String) {
 		let payload: Socket.Payload = [
-			"last_active_at": Date().timeIntervalSince1970,
-			"is_typing": false
+			"last_active_at": typingEvent.lastActiveAt.timeIntervalSince1970,
+			"is_typing": typingEvent.isTyping
 		]
 		
 		push(to: topic, payload: payload)
+	}
+	
+	public func send(_ foregroundViewingEvent: ForegroundViewing, to topic: String) {
+		let payload: Socket.Payload = [
+			"last_active_at": foregroundViewingEvent.lastActiveAt.timeIntervalSince1970,
+			"is_foreground": foregroundViewingEvent.isForeground,
+			"is_viewing": foregroundViewingEvent.isViewing
+		]
+		
+		push(to: topic, payload: payload)
+	}
+	
+	public func sendViewingEvent(to topic: String) {
+		
 	}
 }

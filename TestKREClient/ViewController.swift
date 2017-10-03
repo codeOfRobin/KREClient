@@ -21,9 +21,25 @@ class ViewController: UIViewController {
 			print("connected")
 			self?.kreClient.channel(topic: testCreds.presenceChannel, deviceID: nil) {
 				payload in
-				
-				print(payload)
 			}
+			
+			let sampleCase = "presence-61485139915436ab6fc57ca6b1e0bc87f58649bc427077133b6e71a278c3e8a2@v1_cases_560"
+			
+			self?.kreClient.channel(topic: sampleCase, deviceID: nil, onJoin: { (payload) in
+				
+				self?.kreClient.addPresenceStateCallback(topic: sampleCase) { (state) in
+					print(state)
+				}
+				
+				self?.kreClient.addChangeCallback(topic: sampleCase) { (payload) in
+				}
+				
+				self?.kreClient.send(ForegroundViewing(isViewing: true, isForeground: true, lastActiveAt: Date()), to: sampleCase)
+				
+				self?.kreClient.send(Typing.init(isTyping: true, lastActiveAt: Date()), to: sampleCase)
+				
+				self?.kreClient.send(Updating.init(isUpdating: true, lastActiveAt: Date()), to: sampleCase)
+			})
 		}
 		
 		// Do any additional setup after loading the view, typically from a nib.
