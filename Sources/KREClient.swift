@@ -57,9 +57,13 @@ public class KREClient {
 		
 	}
 	
-	public func connect(onConnect: (@escaping () -> Void), onDisconnect: (@escaping (NSError?) -> ())) {
+	public func connect(onConnect: (@escaping () -> Void), onDisconnect: ((NSError?) -> ())? = nil) {
 		socket.onConnect = onConnect
-		socket.onDisconnect = onDisconnect
+		socket.onDisconnect = onDisconnect ?? { error in
+			if error != nil {
+				self.socket.connect()
+			}
+		}
 		socket.connect()
 
 	}

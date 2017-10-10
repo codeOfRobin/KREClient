@@ -17,7 +17,8 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		ViewController.kreClient.connect(onConnect: { [weak self] in
+		
+		ViewController.kreClient.connect(onConnect: {
 			print("connected")
 			ViewController.kreClient.channel(topic: testCreds.presenceChannel, deviceID: nil) {
 				payload in
@@ -50,9 +51,7 @@ class ViewController: UIViewController {
 				
 				ViewController.kreClient.send(Updating.init(isUpdating: true, lastActiveAt: Date()), to: sampleCase)
 			})
-		}) { (error) in
-			print(error)
-		}
+		})
 		
 		// Do any additional setup after loading the view, typically from a nib.
 	}
