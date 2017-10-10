@@ -57,13 +57,15 @@ public class KREClient {
 		
 	}
 	
-	public func connect(onConnect: (@escaping () -> Void)) {
+	public func connect(onConnect: (@escaping () -> Void), onDisconnect: (@escaping (NSError?) -> ())) {
 		socket.onConnect = onConnect
+		socket.onDisconnect = onDisconnect
 		socket.connect()
-		socket.onDisconnect = {
-			[weak self] error in
-			self?.socket.connect()
-		}
+
+	}
+	
+	public func disconnect() {
+		socket.disconnect()
 	}
 	
 	public func addCallback(topic: String, event: String, closure: @escaping (Response) -> Void) {

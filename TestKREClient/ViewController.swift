@@ -12,23 +12,23 @@ import Unbox
 
 class ViewController: UIViewController {
 
-	let kreClient = KREClient(instance: testCreds.url, auth: .session(sessionID: testCreds.sessionID, userAgent: testCreds.userAgent, email: testCreds.email))
+	static let kreClient = KREClient(instance: testCreds.url, auth: .session(sessionID: testCreds.sessionID, userAgent: testCreds.userAgent, email: testCreds.email))
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		kreClient.connect { [weak self] in
+		ViewController.kreClient.connect(onConnect: { [weak self] in
 			print("connected")
-			self?.kreClient.channel(topic: testCreds.presenceChannel, deviceID: nil) {
+			ViewController.kreClient.channel(topic: testCreds.presenceChannel, deviceID: nil) {
 				payload in
 			}
 			
 			
 			let sampleCase = "presence-61485139915436ab6fc57ca6b1e0bc87f58649bc427077133b6e71a278c3e8a2@v1_cases_560"
 			
-			self?.kreClient.channel(topic: sampleCase, deviceID: nil, onJoin: { (payload) in
+			ViewController.kreClient.channel(topic: sampleCase, deviceID: nil, onJoin: { (payload) in
 				
-				self?.kreClient.addPresenceStateCallback(topic: sampleCase) { (state) in
+				ViewController.kreClient.addPresenceStateCallback(topic: sampleCase) { (state) in
 					let users = state.map{ $0.value }
 					let metas = users.flatMap{ $0.first }
 					let viewingUsers = metas.filter{ $0["is_viewing"] as? Int == 1 }
@@ -41,15 +41,17 @@ class ViewController: UIViewController {
 					print(avatarURLs)
 				}
 				
-				self?.kreClient.addChangeCallback(topic: sampleCase) { (payload) in
+				ViewController.kreClient.addChangeCallback(topic: sampleCase) { (payload) in
 				}
 				
-				self?.kreClient.send(ForegroundViewing(isViewing: true, isForeground: true, lastActiveAt: Date()), to: sampleCase)
+				ViewController.kreClient.send(ForegroundViewing(isViewing: true, isForeground: true, lastActiveAt: Date()), to: sampleCase)
 				
-				self?.kreClient.send(Typing.init(isTyping: true, lastActiveAt: Date()), to: sampleCase)
+				ViewController.kreClient.send(Typing.init(isTyping: true, lastActiveAt: Date()), to: sampleCase)
 				
-				self?.kreClient.send(Updating.init(isUpdating: true, lastActiveAt: Date()), to: sampleCase)
+				ViewController.kreClient.send(Updating.init(isUpdating: true, lastActiveAt: Date()), to: sampleCase)
 			})
+		}) { (error) in
+			print(error)
 		}
 		
 		// Do any additional setup after loading the view, typically from a nib.
