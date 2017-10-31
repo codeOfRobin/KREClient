@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KREClient"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "Client for Kayako Realtime Engine"
   s.description  = "Client for Kayako Realtime Engine. Works with iOS 8.0 and greater."
   s.homepage     = "https://github.com/codeOfRobin/KREClient"
