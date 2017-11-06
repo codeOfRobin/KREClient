@@ -60,9 +60,7 @@ public class KREClient {
 	public func connect(onConnect: (@escaping () -> Void), onDisconnect: ((Error?) -> ())? = nil) {
 		socket.onConnect = onConnect
 		socket.onDisconnect = onDisconnect ?? { error in
-			if error != nil {
-				self.socket.connect()
-			}
+			
 		}
 		socket.connect()
 
