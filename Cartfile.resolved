@@ -1,5 +1,3 @@
-github "codeOfRobin/Birdsong" "baa6ee9de3058837bd0cbeb50cbc043001b3ad4c"
-github "daltoniam/Starscream" "3.0.4"
-github "daltoniam/common-crypto-spm" "1.1.0"
-github "daltoniam/zlib-spm" "1.1.0"
+github "codeOfRobin/Birdsong" "c0aae51284d45692490b7fd17bb7ba2a521f8f3e"
 github "johnsundell/unbox" "2.5.0"
+github "rastersize/Starscream" "327a7d8e9e395e51709944f7ad344deec18ea1a4"
