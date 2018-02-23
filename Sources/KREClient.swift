@@ -50,9 +50,12 @@ public class KREClient {
 	}
 	
 	public func channel(topic: String, deviceID: Int?, onJoin: (@escaping (Socket.Payload) -> Void)) {
-		let channel = self.socket.channel(topic, payload: [:])
+		let payload = deviceID.flatMap { ["device_id": $0] } ?? [:]
+		let channel = self.socket.channel(topic, payload: payload)
 		channel.join()?.receive("ok", callback: { (payload) in
 			onJoin(payload)
+		}).receive("error", callback: { (payload) in
+			print(payload)
 		})
 		
 	}
